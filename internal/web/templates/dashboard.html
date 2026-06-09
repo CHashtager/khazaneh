@@ -1,0 +1,22 @@
+{{define "content"}}
+<h1>Dashboard</h1>
+{{if .User}}
+<div class="grid">
+  <div class="card">
+    <div class="metric">Current Jalali month</div>
+    <div class="value">{{.CurrentYM}}</div>
+  </div>
+  <div class="card">
+    <div class="metric">Expenses</div>
+    <div class="value">{{.Summary.ExpenseTotal}}</div>
+  </div>
+  <div class="card">
+    <div class="metric">Income</div>
+    <div class="value">{{.Summary.IncomeTotal}}</div>
+  </div>
+</div>
+{{end}}
+
+<h2>Recent Transactions</h2>
+{{template "transaction-table" .Transactions}}
+{{end}}

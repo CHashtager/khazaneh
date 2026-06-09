@@ -1,0 +1,37 @@
+{{define "content"}}
+<h1>Edit Transaction</h1>
+{{with .Transaction}}
+<form class="card" method="post" action="/transactions/{{.ID}}" style="max-width: 620px;">
+  <label>Kind
+    <select name="kind">
+      <option value="expense" {{if eq .Kind "expense"}}selected{{end}}>Expense</option>
+      <option value="income" {{if eq .Kind "income"}}selected{{end}}>Income</option>
+    </select>
+  </label>
+  <br>
+  <label>Amount
+    <input name="amount" inputmode="decimal" value="{{.Amount}}" required>
+  </label>
+  <br>
+  <label>Category
+    <select name="category_id">
+      <option value="">Uncategorized</option>
+      {{range $.Categories}}
+      <option value="{{.ID}}" {{if eq .ID $.SelectedID}}selected{{end}}>{{.Name}} ({{.Kind}})</option>
+      {{end}}
+    </select>
+  </label>
+  <br>
+  <label>Merchant
+    <input name="merchant" value="{{.Merchant}}">
+  </label>
+  <br>
+  <label>Note
+    <input name="note" value="{{.Note}}">
+  </label>
+  <br>
+  <button type="submit">Save</button>
+  <a href="/transactions" style="margin-left: 10px;">Cancel</a>
+</form>
+{{end}}
+{{end}}

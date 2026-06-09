@@ -1,0 +1,28 @@
+{{define "transaction-table"}}
+<table>
+  <thead>
+    <tr>
+      <th>Jalali Date</th>
+      <th>Kind</th>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Note</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .}}
+    <tr>
+      <td>{{printf "%04d/%02d/%02d" .JalaliYear .JalaliMonth .JalaliDay}}</td>
+      <td>{{.Kind}}</td>
+      <td>{{.Amount}} {{.Currency}}</td>
+      <td>{{.Category}}</td>
+      <td>{{.Note}}</td>
+      <td><a href="/transactions/{{.ID}}/edit">Edit</a></td>
+    </tr>
+    {{else}}
+    <tr><td colspan="6">No transactions yet.</td></tr>
+    {{end}}
+  </tbody>
+</table>
+{{end}}
